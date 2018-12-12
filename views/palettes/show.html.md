@@ -8,10 +8,12 @@ PUT EXAMPLE HERE
 ```
 
 Generally there is also a way to delete the showed data. This requires a form:
-
+<form action="/tasks/{{id}}?_method=DELETE" method="post">
 ### Method: 
 ### Action:
 
 We also want to show all of the colors here. How can we do that?
 ```html 
 ```
+{{color1}}
+{{color2}}
