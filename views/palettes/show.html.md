@@ -5,12 +5,14 @@ Show pages give us specific details about a given item of data. We can access di
 ## How to render data:
 ```html
 PUT EXAMPLE HERE
+{{p_row1}}
+{{p_row2}}
 ```
 
 Generally there is also a way to delete the showed data. This requires a form:
 
-### Method: 
-### Action:
+### Method: post
+### Action:/pallete/{{id}}?_method=DELETE
 
 We also want to show all of the colors here. How can we do that?
 ```html 
