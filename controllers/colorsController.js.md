@@ -14,7 +14,7 @@ router.method('path', middleWare1, middleWare2);
 ```
 ### Routes needed for this controller:
 ```js 
-router.get('/', Color.getAll, renderIndex);
+
 router.get('/new', renderNew);
 router.get('/:id', Color.find, renderShow);
 router.get('/:id/edit', Color.find, renderEdit);
