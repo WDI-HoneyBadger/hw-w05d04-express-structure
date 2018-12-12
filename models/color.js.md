@@ -37,24 +37,28 @@ SELECT * FROM colors WHERE palette_id=$1;
 - **SQL Query:**
 ```sql 
 ```
+SELECT * FROM colors WHERE id=$1
 - **Locals key:**  
 #### `create()` - adds a color to our database
 - **pg-promise method:** 
 - **SQL Query:**
 ```sql 
 ```
+INSERT INTO colors (color1, color2, color3, color4) VALUES ($1, $2, $3, $4) RETURNING id;
 - **Locals key:**  
 #### `update()` - edits a specific color
 - **pg-promise method:** 
 - **SQL Query:**
 ```sql 
 ```
+UPDATE colors SET color1 = $1, color2 = $2, color3 = $3, color4 = $4 WHERE id = $5 RETURNING id;
 - **Locals key:** 
 #### `delete()` - deletes a specific color
 - **pg-promise method:** 
 - **SQL Query:**
 ```sql 
 ```
+DELETE FROM colors where id=$1;
 - **Locals key:**  
 
 ## Exports
