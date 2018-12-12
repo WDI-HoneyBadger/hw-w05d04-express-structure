@@ -11,7 +11,18 @@ router.method('path', middleWare1, middleWare2);
 ### Routes needed for this controller:
 ```js 
 router.get('/', palette.getAll, renderIndex);
-PUT THE ROUTES NEEDED FOR THIS CONTROLLER HERE
+
+router.get('/new', renderNew);
+
+router.get('/:id/edit', palette.find, renderEdit);
+
+router.get('/:id', palette.find, renderShow);
+
+router.post('/', palette.create, redirectShow);
+
+router.delete('/:id', palette.delete, redirectIndex);
+
+router.put('/:id', palette.update, redirectShow);
 ```
 You can also import other controllers that go off of the same paths. For this controller the base is `/palettes` The colors controller is going to have a base of `/palettes/:palette_id/colors` we can therefore do the following:
 ```js
@@ -51,6 +62,36 @@ mustacheVariables = {
 - view: `./palettes/index`
 
 ---
+---
+#### renderShow - renders all of the palettes
+- mustacheVariables: 
+```js
+mustacheVariables = {
+  palettes: res.locals.palette
+}
+```
+- view: `./palettes/show/`
+
+---
+---
+#### renderNew - renders all of the palettes
+- mustacheVariables: `N/A`
+
+- view: `./palettes/new`
+
+---
+---
+#### renderEdit- renders all of the palettes
+- mustacheVariables: 
+```js
+mustacheVariables = {
+  palettes: res.locals.palette
+}
+```
+- view: `./palettes/edit`
+
+---
+
 
 
 USE THE FOLLOWING TEMPLATE FOR EACH REDIRECT:
@@ -59,7 +100,12 @@ USE THE FOLLOWING TEMPLATE FOR EACH REDIRECT:
 #### redirectIndex - redirects to the list of palettes 
 - redirect_url: `/palettes`
 ---
+---
+#### redirectShow - redirects to the list of palettes 
+- redirect_url: `/palettes/${res.locals.palette_id}`
+---
 
 
 ## Exports
 PUT WHAT YOU EXPORT HERE
+`module.exports = router`
