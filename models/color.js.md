@@ -1,61 +1,83 @@
-# Color Model
-Models contain middleware functions that are used to talk to our database. 
+# Palettes Controller
+var express = require('express');
+var router = express.Router();
 
-## Required Modules 
+## Required Modules
 PUT YOUR REQUIRED MODULES AND PACKAGES HERE
+var palette = require('../models/palette');
+## Routes 
+Routes tell our app what to do when a request is made to a certain path. The basic structure of a route is as follows:
+```js 
+router.method('/', middleWare1, middleWare2);
+
+```
+### Routes needed for this controller:
+```js 
+router.get('/', palette.getAll, renderIndex);
+PUT THE ROUTES NEEDED FOR THIS CONTROLLER HERE
+```
+
+router.get('/new', palette.getAll, renderIndex);
+router.get('/:id', palette.getAll, renderIndex);
+/palettes
+You can also import other controllers that go off of the same paths. For this controller the base is `/palettes` The colors controller is going to have a base of `/palettes/:palette_id/colors` we can therefore do the following:
+```js
+var colorsController = require('./colorsController');
+router.use('/:palette_id/colors', palette.find, colorsController);
+```
 
 ## Middleware
-Each middleware method is added to our model. the basic structure is as follows:
-
+Controller middleware is used to send back a response to the client. This can be by either rendering a html page or by redirecting to another route. The basic structure for controller middleware is as follows:
 ```js
-model.getAll = function(req, res, next){
-  db.manyOrNone(`SELECT * FROM table;`)
-    .then(function(result){
-      res.locals.key = result;
-      next();
-    })
-    .catch(function(error){
-      console.log(error);
-      next();
-    })
+function renderSomething(req, res){
+  var mustacheVariables = {
+    key: res.locals.data
+  }
+  res.render('./something', mustacheVariables)
+}
+
+function redirectSomewhere(req, res){
+  res.redirect('path/to/redirect')
 }
 ```
 
-### Middleware for this model:
+### Middleware needed for this controller:
 
-FILL OUT THE REST OF THE MIDDLEWARE
+---
 
-#### `getAllByPalette()` - gets all the colors for a given palette 
-- **pg-promise method:** `db.manyOrNone`
-- **SQL Query:**
-```sql 
-SELECT * FROM colors WHERE palette_id=$1;
+USE THE FOLLOWING TEMPLATE FOR EACH RENDER:
+
+---
+#### renderIndex - renders all of the palettes
+- mustacheVariables: 
+```js
+mustacheVariables = {
+  palettes: res.locals.palettes
+}
+function renderIndex(req, res){
+  var mustacheVariables = {
+   palettes: res.locals.palettes
+  }
+  res.render('./index', mustacheVariables)
+}
 ```
-- **Locals key:** `res.locals.colors`
-#### `find()` - gets a specific color
-- **pg-promise method:** 
-- **SQL Query:**
-```sql 
-```
-- **Locals key:**  
-#### `create()` - adds a color to our database
-- **pg-promise method:** 
-- **SQL Query:**
-```sql 
-```
-- **Locals key:**  
-#### `update()` - edits a specific color
-- **pg-promise method:** 
-- **SQL Query:**
-```sql 
-```
-- **Locals key:** 
-#### `delete()` - deletes a specific color
-- **pg-promise method:** 
-- **SQL Query:**
-```sql 
-```
-- **Locals key:**  
+- view: `./palettes/index`
+
+---
+
+
+USE THE FOLLOWING TEMPLATE FOR EACH REDIRECT:
+
+---
+#### redirectIndex - redirects to the list of palettes 
+- redirect_url: `/palettes`
+---
+function redirectPalettes(req, res){
+  res.redirect('palettes/index/redirect')
+}
 
 ## Exports
 PUT WHAT YOU EXPORT HERE
+
+module.exports = router;
+
