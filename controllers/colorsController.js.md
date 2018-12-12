@@ -87,21 +87,20 @@ function renderIndex(req, res){
     res.render('./color/index', mustacheVariables);
   }
   ```
----
 
 
 
 
----
+
+
 #### redirectIndex - redirects to the list of palettes 
 - redirect_url: `/color`
+
 ```js
 function redirectIndex(req, res){
     res.redirect('/color');
   }
   ```
----
-
 
 ## Exports
 ```js
