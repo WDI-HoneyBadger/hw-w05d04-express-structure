@@ -6,11 +6,16 @@ Show pages give us specific details about a given item of data. We can access di
 ```html
 PUT EXAMPLE HERE
 ```
+  <a href="/palettes">see all palettes</a>
+  <h1>{{subject}}</h1>
+  <p>{{content}}</p>
 
 Generally there is also a way to delete the showed data. This requires a form:
 
 ### Method: 
+  <form action="/palettes/{{id}}?_method=DELETE" method="post">
 ### Action:
+<button type="submit">Delete palettes</button>
 
 We also want to show all of the colors here. How can we do that?
 ```html 

@@ -3,6 +3,21 @@
 ## Required Modules
 PUT YOUR REQUIRED MODULES AND PACKAGES HERE
 
+
+
+var express = require('express');
+var router = express.Router();
+
+var colors = require('./models/palette');
+
+router.get('/', palettes.getAll, renderIndex);
+router.get('/new', renderNew);
+router.get('/:id/edit', palettes.find, renderEdit);
+router.get('/:id', palettes.find, renderShow);
+
+
+
+
 ## Routes 
 Routes tell our app what to do when a request is made to a certain path. The basic structure of a route is as follows:
 ```js 
@@ -63,3 +78,5 @@ USE THE FOLLOWING TEMPLATE FOR EACH REDIRECT:
 
 ## Exports
 PUT WHAT YOU EXPORT HERE
+
+module.exports= router;
