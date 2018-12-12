@@ -1,0 +1,19 @@
+{
+  "name": "hw-w05d04-express-structure",
+  "version": "1.0.0",
+  "description": "Today we are going to be **thinking** about our applications and their structure. To do so, we are going to scaffold an application where a user can make color palettes. We are going to create markdown files for each of our app's files and outline what each file does.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SultanBS/hw-w05d04-express-structure.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SultanBS/hw-w05d04-express-structure/issues"
+  },
+  "homepage": "https://github.com/SultanBS/hw-w05d04-express-structure#readme"
+}

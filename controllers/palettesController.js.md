@@ -12,6 +12,13 @@ router.method('path', middleWare1, middleWare2);
 ```js 
 router.get('/', palette.getAll, renderIndex);
 PUT THE ROUTES NEEDED FOR THIS CONTROLLER HERE
+router.get('/new', renderNew);
+router.get('/:id', palette.find, renderShow);
+router.post('/', palette.create, redirectShow);
+router.post('/:id', palette.delete, redirectShow);
+router.get('/:id/edit', palette.find, renderShow);
+router.post('/:id', palette.update, redirectShow);
+
 ```
 You can also import other controllers that go off of the same paths. For this controller the base is `/palettes` The colors controller is going to have a base of `/palettes/:palette_id/colors` we can therefore do the following:
 ```js
@@ -63,3 +70,4 @@ USE THE FOLLOWING TEMPLATE FOR EACH REDIRECT:
 
 ## Exports
 PUT WHAT YOU EXPORT HERE
+- `module.exports = router;`

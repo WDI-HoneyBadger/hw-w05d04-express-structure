@@ -4,4 +4,7 @@ Index pages list multiple items from our database. We can loop through our data 
 
 ## How to loop through data:
 ```html
+{{#propertyName}}
+    {{keyValue}}
+{{/propertyName}}
 ```
