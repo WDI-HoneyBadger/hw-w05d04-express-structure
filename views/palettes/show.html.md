@@ -4,14 +4,23 @@ Show pages give us specific details about a given item of data. We can access di
 
 ## How to render data:
 ```html
-PUT EXAMPLE HERE
+<h1>{{palette}}</h1>
 ```
 
 Generally there is also a way to delete the showed data. This requires a form:
 
 ### Method: 
+```html
+ method="POST"
+```
 ### Action:
-
+```html
+action="/palette/{{id}}?_method=DELETE"
+```
 We also want to show all of the colors here. How can we do that?
 ```html 
+ <h3>{{palette}}</h3>
+    </a>
+
+    {{/palette}}
 ```

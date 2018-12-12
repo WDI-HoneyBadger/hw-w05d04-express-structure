@@ -1,12 +1,25 @@
 # Palettes Controller
 
 ## Required Modules
-PUT YOUR REQUIRED MODULES AND PACKAGES HERE
+```js
+var express = require('express');
+var router = express.Router();
+var  app = require('../models/palette');
+``` 
 
 ## Routes 
 Routes tell our app what to do when a request is made to a certain path. The basic structure of a route is as follows:
 ```js 
 router.method('path', middleWare1, middleWare2);
+```
+```js
+router.get('/', palette.getAll, renderIndex);
+router.get('/new', renderNew);
+router.get('/:id/edit',palette.find , renderEdit);
+router.get('/:id', palette.find, renderShow);
+router.post('/', palette.create, redirectShow);
+router.delete('/:id', palette.delete, redirectIndex);
+router.put('/:id',palette.update , redirectShow);
 ```
 ### Routes needed for this controller:
 ```js 
@@ -36,11 +49,6 @@ function redirectSomewhere(req, res){
 
 ### Middleware needed for this controller:
 
----
-
-USE THE FOLLOWING TEMPLATE FOR EACH RENDER:
-
----
 #### renderIndex - renders all of the palettes
 - mustacheVariables: 
 ```js
@@ -49,17 +57,38 @@ mustacheVariables = {
 }
 ```
 - view: `./palettes/index`
+```js
+function redirectShow(req, res){
+  res.redirect('./palettes/${res.locals.data_id}')
+}
 
----
+function renderNew(req, res){
+    res.render('./palettes/new');
+  }
+  
+```
 
-
-USE THE FOLLOWING TEMPLATE FOR EACH REDIRECT:
-
----
 #### redirectIndex - redirects to the list of palettes 
 - redirect_url: `/palettes`
----
+```js
+function redirectShow(req, res) {
+    console.log(req.body);
+    res.redirect(`/palettes/${res.locals.palettes_id}`);
+  }
+  
+  function renderEdit(req,res){
+    var mustacheVariables =  res.locals.palettes ;
+
+    res.render('./palettes/edit',mustacheVariables);
+    }
+
+    function redirectIndex(req, res){
+    res.redirect('/color');
+  }
+```
 
 
 ## Exports
-PUT WHAT YOU EXPORT HERE
+```js
+module.exports = router;
+```
