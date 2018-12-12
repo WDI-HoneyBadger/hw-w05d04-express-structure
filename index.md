@@ -1,6 +1,9 @@
 # Entry Point of Application
 This is where all the config for our application goes 
 
+-	Index.js is a configuration and initialisation file where we configure our server to use things - It’s the entry file of our app 
+
+
 ## Required Packages and Config
 
 ### express 
