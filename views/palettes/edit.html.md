@@ -11,7 +11,7 @@ Edit pages render forms to make requests to edit data within our database.
 
 <body>
         <a href="/"> Home</a>
-        <a href="/palette"> palette list </a>
+        <a href="/palette"> all palette  </a>
       </div>
       <form class="create" action="/palette/{{id}}?_method=PUT" method="POST" >
         <label for="name">
@@ -20,7 +20,7 @@ Edit pages render forms to make requests to edit data within our database.
         <label for="type1">
           last: <input type="text" name="last" id="last" value="{{last}}"/>
         </label>
-        <button type="submit">Submit Update</button>
+        <button type="submit"> Update</button>
         </form>
 </body>
 </html>

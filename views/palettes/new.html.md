@@ -12,8 +12,7 @@ New pages render forms to make requests to create new data within our database.
         <form action="/palette" method="POST">
             <input type="text" name="first" placeholder="first">
             <input type="text" name="last" placeholder="last">
-           
-            <button type="submit/show"> new list </button>
+            <button type="submit/show"> new palette </button>
           </form>
     
 </body>

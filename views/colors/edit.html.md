@@ -10,7 +10,7 @@
         <label for="type1">
           last: <input type="text" name="last" id="last" value="{{last}}"/>
         </label>
-        <button type="submit">Submit Update</button>
+        <button type="submit"> Update</button>
         </form>
 </body>
 </html>

@@ -15,5 +15,6 @@ Index pages list multiple items from our database. We can loop through our data 
     </ul>
   {{/cp}}
 
- <a href="/cp/new"> create new one  </a>
+ <a href="/cp/new">  new palette  </a>
+ <a href="./palettes/index"> all palette  </a>
 ```

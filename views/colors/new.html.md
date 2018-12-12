@@ -5,8 +5,7 @@ USE PALETTE NEW AS A REFERENCE
         <form action="/color" method="POST">
             <input type="text" name="first" placeholder="first">
             <input type="text" name="last" placeholder="last">
-           
-            <button type="submit/show"> new list </button>
+            <button type="submit/show"> new color </button>
           </form>
     
 </body>

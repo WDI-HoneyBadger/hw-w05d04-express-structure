@@ -5,8 +5,8 @@ Show pages give us specific details about a given item of data. We can access di
 ## How to render data:
 ```html
  {{#cp}}
-    <h1>{{cp.subject}}</h1>
-    <h1>{{cp.content}}</h1>
+    <h1>{{cp.first}}</h1>
+    <h1>{{cp.last}}</h1>
     {{/cp}}
 ```
 
@@ -15,7 +15,7 @@ Generally there is also a way to delete the showed data. This requires a form:
 ### Method: 
 ### Action:
  <form action="/palette/{{id}}?_method=DELETE" method="POST">
-      <button type="submit">delete list</button>
+      <button type="submit">delete </button>
     </form>
 We also want to show all of the colors here. How can we do that?
 <a href="/color">show all color </a>
@@ -25,10 +25,10 @@ We also want to show all of the colors here. How can we do that?
 
 <body>  <a href="/palette">back</a>
     {{#cp}}
-    <h1>{{cp.subject}}</h1>
-    <h1>{{cp.content}}</h1>
+    <h1>{{cp.first}}</h1>
+    <h1>{{cp.last}}</h1>
     {{/cp}}
     <form action="/palette/{{id}}?_method=DELETE" method="POST">
-      <button type="submit">delete list</button>
+      <button type="submit">delete </button>
     </form>
   
