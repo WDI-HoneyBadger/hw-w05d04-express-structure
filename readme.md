@@ -1,8 +1,8 @@
-# HW W05D04 Honey Badger Colors
+# HW W05D04 Express Structure
 
 Today we are going to be **thinking** about our applications and their structure. To do so, we are going to scaffold an application where a user can make color palettes. We are going to create markdown files for each of our app's files and outline what each file does. 
 
-## Application Flow / Mockups
+## Application Flow / Moc
 Here is the spec of the application. Take a close look at it and what each of the pages show. Each of the requests are marked with the route in black, the model middleware in red and the controller middleware in blue.
 ![app spec](./assets/app_spec.png)
 
