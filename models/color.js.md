@@ -3,7 +3,11 @@ Models contain middleware functions that are used to talk to our database.
 
 ## Required Modules 
 PUT YOUR REQUIRED MODULES AND PACKAGES HERE
+```js
+var db = require('../db/config');
+var color = {}//why
 
+```
 ## Middleware
 Each middleware method is added to our model. the basic structure is as follows:
 
@@ -25,16 +29,30 @@ model.getAll = function(req, res, next){
 
 FILL OUT THE REST OF THE MIDDLEWARE
 
-#### `getAllByPalette()` - gets all the colors for a given palette 
-- **pg-promise method:** `db.manyOrNone`
+
 - **SQL Query:**
-```sql 
-SELECT * FROM colors WHERE palette_id=$1;
+
+```sql
+
+colors.getAll = function(req,res,next){
+db.manyOrNone("SELECT * FROM colors WHERE palette_id=$1")
+.then (function(error){
+  res.locals.color=result;
+  next();
+})
+}
 ```
-- **Locals key:** `res.locals.colors`
-#### `find()` - gets a specific color
-- **pg-promise method:** 
-- **SQL Query:**
+
+```sql
+color.find =function(req,res,next){
+  db.oneOrNone("SELECT  FROM colors WHERE id=1$;",[req.params.id]);
+  .then(function(result){
+    res.locals.colors = result;
+    next();
+  })
+}
+```
+
 ```sql 
 ```
 - **Locals key:**  
@@ -59,3 +77,6 @@ SELECT * FROM colors WHERE palette_id=$1;
 
 ## Exports
 PUT WHAT YOU EXPORT HERE
+```js
+module.exports = color;
+```
