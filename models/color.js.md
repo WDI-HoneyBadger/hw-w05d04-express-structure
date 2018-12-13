@@ -48,7 +48,7 @@ colors.create = function(req,res,next){
         bgcolor: req.body.bgcolor,
     }
 
-    db.one(`INSERT INTO colors (name , bgcolor) VALUES ($1,$2)  WHERE palette_id = $3 RETURNING color_id;`, [colors.name,colors.bgcolor])
+    db.one(`INSERT INTO colors (name , bgcolor) VALUES ($1,$2)  WHERE palette_id = $3 RETURNING color_id;`, [colors.name,colors.bgcolor,req.params.palette_id,req.params.color_id])
     .then(function(result){
         res.locals.color_id=result.id;
         next();
@@ -67,7 +67,7 @@ colors.update = function (req,res,next){
        
     }
 
-    db.one(`UPDATE colors SET name = $1 , bgcolor = $2 WHERE id = $3 RETURNING color_id;`,[colors.name, colors.bgcolor])
+    db.one(`UPDATE colors SET name = $1 , bgcolor = $2 WHERE id = $3 RETURNING color_id;`,[colors.name, colors.bgcolor,req.params.palette_id,req.params.color_id]])
 .then(function (result){
     res.locals.colors_id=result.id;
     next();
