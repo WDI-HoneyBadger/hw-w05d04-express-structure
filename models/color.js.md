@@ -48,25 +48,34 @@ colors.find = function (req, res, next) {
 
 colors.update = function(req, res, next) {
   db.one(`UPDATE colors SET name = $1, bgcolor = $2
-   WHERE id = $3 AND pallette_id = $4 RETURNING id;`, [req.body.name, req.body.bgcolor, req.params.id, req.params.pallette_id])
+   pallette_id = $3 WHERE id = $4 RETURNING id;`, [req.body.name, req.body.bgcolor, req.params.pallette_id, req.params.id])
    .then(function(result){
-     console.log(`table updated for ${result.id}`);
-     res.locals.colors_id = result.id;
+     res.locals.colorsId = result.id;
      next();
    })
    .catch(function(error){
-    console.log(error);
+
     next();
   })
 }
 colors.delete = function(req, res, next) {
   db.none("DELETE FROM colors WHERE id=$1;", [req.params.id])
     .then(function(){
-      console.log('DELETE');
       next();
     })
     .catch(function(error){
-      console.log(error);
+ 
+      next();
+    })
+}
+colors.findByPalette = function(req, res, next) {
+  db.manyOrNone("SELECT * FROM colors WHERE palette_id=$1;", [req.params.id])
+    .then(function(result){
+res.locals.colors = result;
+      next();
+    })
+    .catch(function(error){
+
       next();
     })
 }

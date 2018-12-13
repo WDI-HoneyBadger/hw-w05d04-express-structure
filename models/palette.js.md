@@ -11,25 +11,23 @@ Each middleware method is added to our model. the basic structure is as follows:
 
 ```js
 palette.getAll = function(req, res, next){
-  db.manyOrNone(`SELECT * FROM pallette ;`)
+  db.manyOrNone("SELECT * FROM pallette ;")
     .then(function(result){
       res.locals.palette = result;
       next();
     })
     .catch(function(error){
-      console.log(error);
       next();
     })
 }
 colors.find = function (req, res, next) {
     var id = req.params.id;
-    db.oneOrNone("SELECT * FROM colors WHERE id = $1 AND palette_id = $2;"), [req.params.id])
+    db.one("SELECT * FROM colors WHERE id = $1 AND palette_id = $2;"), [req.params.id])
       .then(function(result){
         res.locals.palette = result;
         next();
       })
       .catch(function(error){
-        console.log(error);
         next();
       })
   }
@@ -41,33 +39,27 @@ colors.find = function (req, res, next) {
       next();
     })
     .catch(function(error){
-      console.log(error);
-      next();
+            next();
     })
 }
 
 
 palette.update = function(req, res, next) {
-  db.one(`UPDATE colors SET name = $1, bgcolor = $2
-   WHERE id = $3 AND pallette_id = $4 RETURNING id;`, [req.body.name, req.body.bgcolor, req.params.id, req.params.pallette_id])
+  db.one("UPDATE colors SET name = $1, bgcolor = $2 WHERE id = $3 AND pallette_id = $4 RETURNING id;", [req.body.name, req.body.bgcolor, req.params.id, req.params.pallette_id])
    .then(function(result){
-     console.log(`table updated for ${result.id}`);
      res.locals.palette_id = result.id;
      next();
    })
    .catch(function(error){
-    console.log(error);
     next();
   })
 }
 colors.delete = function(req, res, next) {
   db.none("DELETE FROM palette WHERE id=$1;", [req.params.id])
     .then(function(){
-      console.log('DELETE');
       next();
     })
     .catch(function(error){
-      console.log(error);
       next();
     })
 }
@@ -94,20 +86,23 @@ SELECT * FROM colors WHERE palette_id=$1;
 - **pg-promise method:** 
 - **SQL Query:**
 ```sql 
+INSERT INTO colors(name, bgcolor, pallette_id ) VALUES($1, $2, $4) RETURNING id;
 ```
 - **Locals key:**  
 #### `update()` - edits a specific color
 - **pg-promise method:** 
 - **SQL Query:**
 ```sql 
+UPDATE colors SET name = $1, bgcolor = $2 WHERE id = $3 AND pallette_id = $4 RETURNING id;
 ```
 - **Locals key:** 
 #### `delete()` - deletes a specific color
 - **pg-promise method:** 
 - **SQL Query:**
 ```sql 
+DELETE FROM palette WHERE id=$1;
 ```
 - **Locals key:**  
 
 ## Exports
-EXPORT PALETTE
+ module.exports= palette;
