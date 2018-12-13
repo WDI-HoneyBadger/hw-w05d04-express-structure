@@ -43,6 +43,8 @@ From our views we can now link our css by linking files to `/static/styles/style
 ## Routing and Controllers
 We want to give instructions to our application of how to handle incoming requests. We do this with routes. To set up our homepage: 
 ```js
+
+
 // We are giving instructions to our app for when someone is making a get request to `/`
 app.get('/', function(req, res){
   // Here we are saying that our server should render the view: /views/index.html
@@ -54,9 +56,10 @@ We can also set up routes outside of our index.js (in a controller) and tell our
 
 ```js 
 var palettesController = require('./controllers/palettesController');
-
+var colorsController = require('./controllers/colorsController');
 // any time someone makes a request to `/palettes` look in the palettesController for what to do
 app.use('/palettes', palettesController);
+app.use('/colors', colorsController);
 ```
 
 ## Accepting requests

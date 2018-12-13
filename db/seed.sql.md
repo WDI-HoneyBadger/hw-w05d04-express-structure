@@ -10,11 +10,20 @@ c/ color_db
 
 - Create Tables
 
-CREATE TABLE pallette
-CREATE TABLE colors
+CREATE TABLE pallette (
+  id serial primary key,
+  name varchar,
+  description varchar
+);
+
+CREATE TABLE colors (
+  id serial primary key,
+  name varchar,
+ pallette_id  int not null,
+      foreign key(pallette_id) refrence,
+);
 - Insert data into tables 
 INSERT INTO pallette (
-id serial primary key,
 name varchar,
 description varchar)VALUE ('rainbow','all color') ('gray','just gray')( 'blues','just blue');
 
@@ -23,8 +32,7 @@ INSERT INTO colors (
 id serial primary key,
 name varchar,
 bgcolor varchar,
-pallette_id  int not null,
-      foreign key(pallette_id) refrence,
+
 ) VALUE ('#b8bbc1', 1),
 ('#72767c', 1),
 ('#3b3f44', 1),
