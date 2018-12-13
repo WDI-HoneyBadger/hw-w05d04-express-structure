@@ -18,7 +18,8 @@ DROP DATABASE IF EXISTS palettes_db;
 CREATE DATABASE palettes_db;
 \c palettes_db
 CREATE TABLE palettes(palette_id serial primary key, name varchar, description text);
-CREATE TABLE colors(color_id serial primary key, name varchar, bgcolor text);
+CREATE TABLE colors(color_id serial primary key, name varchar, bgcolor text, palette_id int not null,
+  foreign key(palette_id) references palettes);
 INSERT INTO palettes(name, description) VALUES  ('Rainbow', 'All colors of the rainbow') ; 
 INSERT INTO palettes(name, description) VALUES ('Blues', 'Colors of the sky and sea') ;
 INSERT INTO palettes(name, description) VALUES  ('Grey', 'just greys') ;
