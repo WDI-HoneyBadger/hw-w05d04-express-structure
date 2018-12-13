@@ -59,7 +59,57 @@ USE THE FOLLOWING TEMPLATE FOR EACH REDIRECT:
 #### redirectIndex - redirects to the list of palettes 
 - redirect_url: `/palettes`
 ---
+var express = require('express');
+var router = express.Router();
 
+var palettes =  require('../models/color');
+
+
+router.get('/', palettes.getAll, renderIndex);
+router.get('/new', renderNew);
+router.get('/:id/edit', palettes.find, renderEdit);
+router.get('/:id', palettes.find, renderShow);
+
+
+router.delete('/:id', palettes.delete, redirectIndex);
+router.post('/', palettes.create, redirectShow);
+router.put('/:id', palettes.update, redirectShow);
+
+
+
+function redirectIndex(req, res) {
+  res.redirect('/palettes');
+}
+
+function redirectShow(req, res) {
+  res.redirect(`/palettes/${res.locals.data_id}`);
+}
+
+function renderEdit(req, res) {
+  var mustacheVariables = res.locals.palettes
+
+  res.render('./palettes/edit', mustacheVariables);
+}
+
+
+function renderIndex(req, res){
+  var mustacheVariables = {
+   palettes : res.locals.palettes
+  }
+ res.render("./palettes/index', mustacheVariables);
+}
+
+function renderShow(req, res){
+  // res.send(res.locals.color);
+  var mustacheVariables = res.locals.palettes
+  res.render('./palettes/show', mustacheVariables);
+}
+
+function renderNew(req, res){
+  res.render('./palettes/new')
+}
+
+module.exports = router;
 
 ## Exports
 PUT WHAT YOU EXPORT HERE
