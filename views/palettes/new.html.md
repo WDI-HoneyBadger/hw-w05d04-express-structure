@@ -2,8 +2,8 @@
 
 New pages render forms to make requests to create new data within our database.
 
-### Method:
-### Action:
-### Inputs:
+### Method: POST
+### Action: /palette
+### Inputs: name, description
 
-## Other things we want to render:
+## Other things we want to render: /palette

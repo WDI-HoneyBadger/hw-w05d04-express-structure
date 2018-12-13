@@ -54,9 +54,12 @@ We can also set up routes outside of our index.js (in a controller) and tell our
 
 ```js 
 var palettesController = require('./controllers/palettesController');
+var colorsController = require('./controllers/colorsController');
 
 // any time someone makes a request to `/palettes` look in the palettesController for what to do
 app.use('/palettes', palettesController);
+
+app.use('/colors', colorsController);
 ```
 
 ## Accepting requests
