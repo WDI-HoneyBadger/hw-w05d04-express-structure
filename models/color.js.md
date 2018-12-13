@@ -1,8 +1,10 @@
 # Color Model
 Models contain middleware functions that are used to talk to our database. 
-
+var express = ('express)
+var router = express.Router();
 ## Required Modules 
 PUT YOUR REQUIRED MODULES AND PACKAGES HERE
+var palette = requir ('./models/palette');
 
 ## Middleware
 Each middleware method is added to our model. the basic structure is as follows:
@@ -19,6 +21,14 @@ model.getAll = function(req, res, next){
       next();
     })
 }
+function renderSomething(req, res){
+  var mustacheVariables = {
+    key: res.locals.data
+  }
+  res.render('./something', mustacheVariables)
+}
+ function redirectSomewhere(req, res){
+  res.redirect('path/to/redirect')
 ```
 
 ### Middleware for this model:
