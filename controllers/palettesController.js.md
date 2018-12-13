@@ -1,7 +1,11 @@
 # Palettes Controller
 
 ## Required Modules
-PUT YOUR REQUIRED MODULES AND PACKAGES HERE
+```
+var express = require('express');
+var router = express.Router();
+var palette = require('../models/palette');
+```
 
 ## Routes 
 Routes tell our app what to do when a request is made to a certain path. The basic structure of a route is as follows:
@@ -62,4 +66,4 @@ USE THE FOLLOWING TEMPLATE FOR EACH REDIRECT:
 
 
 ## Exports
-PUT WHAT YOU EXPORT HERE
+module.exports = router;

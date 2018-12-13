@@ -2,7 +2,8 @@
 Models contain middleware functions that are used to talk to our database. 
 
 ## Required Modules 
-PUT YOUR REQUIRED MODULES AND PACKAGES HERE
+var db = require('../db/dbconfig');
+var model = {};
 
 ## Middleware
 Each middleware method is added to our model. the basic structure is as follows:
@@ -33,29 +34,33 @@ SELECT * FROM colors WHERE palette_id=$1;
 ```
 - **Locals key:** `res.locals.colors`
 #### `find()` - gets a specific color
-- **pg-promise method:** 
+- **pg-promise method:** `db.oneOrNone`
 - **SQL Query:**
 ```sql 
+SELECT * FROM colors WHERE id=$1;
 ```
-- **Locals key:**  
+- **Locals key:** `res.locals.color`
 #### `create()` - adds a color to our database
-- **pg-promise method:** 
+- **pg-promise method:** `db.one`
 - **SQL Query:**
 ```sql 
+INSERT INTO colors(name, description, palete_id) VALUES($1, $2, $3) RETURNING id;
 ```
-- **Locals key:**  
+- **Locals key:** `res.locals.color_id`
 #### `update()` - edits a specific color
-- **pg-promise method:** 
+- **pg-promise method:** `db.one`
 - **SQL Query:**
 ```sql 
+UPDATE colors SET name=$1, description=$2 WHERE id=$3 RETURNING id;
 ```
 - **Locals key:** 
 #### `delete()` - deletes a specific color
 - **pg-promise method:** 
-- **SQL Query:**
+- **SQL Query:** `db.none`
 ```sql 
+DELET FROM colors WHERE id=$1;
 ```
 - **Locals key:**  
 
 ## Exports
-PUT WHAT YOU EXPORT HERE
+module.exports = model;
