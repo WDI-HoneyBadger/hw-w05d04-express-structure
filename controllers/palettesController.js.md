@@ -1,8 +1,10 @@
 # Palettes Controller
 
 ## Required Modules
-PUT YOUR REQUIRED MODULES AND PACKAGES HERE
 
+var express = require('express');
+var router = express.Router();
+var colors = require('./models/palette');
 ## Routes 
 Routes tell our app what to do when a request is made to a certain path. The basic structure of a route is as follows:
 ```js 
@@ -12,10 +14,17 @@ router.method('path', middleWare1, middleWare2);
 ```js 
 router.get('/', palette.getAll, renderIndex);
 PUT THE ROUTES NEEDED FOR THIS CONTROLLER HERE
+router.get('/new', renderNew);
+router.get('/:id/edit', palettes.find renderEdit);
+router.get('/:id', palettes.find, renderShow);
+
+router.post('/', palette.create, redirectShow);
+
+
 ```
 You can also import other controllers that go off of the same paths. For this controller the base is `/palettes` The colors controller is going to have a base of `/palettes/:palette_id/colors` we can therefore do the following:
 ```js
-var colorsController = require('./colorsController');
+var colorsController = require ('./colorsController');
 router.use('/:palette_id/colors', palette.find, colorsController);
 ```
 
@@ -63,3 +72,4 @@ USE THE FOLLOWING TEMPLATE FOR EACH REDIRECT:
 
 ## Exports
 PUT WHAT YOU EXPORT HERE
+module.exports= router;

@@ -9,8 +9,8 @@ PUT EXAMPLE HERE
 
 Generally there is also a way to delete the showed data. This requires a form:
 
-### Method: 
-### Action:
+### Method: 1- form tag to delete the id (post)
+### Action:2- a button to submit 
 
 We also want to show all of the colors here. How can we do that?
 ```html 

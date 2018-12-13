@@ -5,3 +5,9 @@ Index pages list multiple items from our database. We can loop through our data 
 ## How to loop through data:
 ```html
 ```
+
+1- {{#palettes}}
+we will add an <a> (palettes id )
+{{subject}}
+{{content}}
+ {{/palettes}}
