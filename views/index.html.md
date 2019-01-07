@@ -8,3 +8,6 @@ since we set up our static directory in `index.js` we can add styles like this:
 ```html
 <link rel="stylesheet" href="/static/styles/style.css">
 ```
+```html
+<a href="/pageName">go to Page</a>
+```

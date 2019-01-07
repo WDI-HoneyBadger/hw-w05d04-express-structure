@@ -63,3 +63,6 @@ USE THE FOLLOWING TEMPLATE FOR EACH REDIRECT:
 
 ## Exports
 PUT WHAT YOU EXPORT HERE
+```js
+module.exports = router;
+```
