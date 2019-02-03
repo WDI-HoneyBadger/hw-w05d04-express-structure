@@ -1,7 +1,13 @@
 # Palettes Controller
+```js 
+var express = require('express');
+var router = express.Router();
+```
 
 ## Required Modules
-PUT YOUR REQUIRED MODULES AND PACKAGES HERE
+```js 
+var palette = require('../models/palette');
+``` 
 
 ## Routes 
 Routes tell our app what to do when a request is made to a certain path. The basic structure of a route is as follows:
@@ -11,12 +17,12 @@ router.method('path', middleWare1, middleWare2);
 ### Routes needed for this controller:
 ```js 
 router.get('/', palette.getAll, renderIndex);
-PUT THE ROUTES NEEDED FOR THIS CONTROLLER HERE
-```
-You can also import other controllers that go off of the same paths. For this controller the base is `/palettes` The colors controller is going to have a base of `/palettes/:palette_id/colors` we can therefore do the following:
-```js
-var colorsController = require('./colorsController');
-router.use('/:palette_id/colors', palette.find, colorsController);
+router.get('/new', renderNew);
+router.get('/:palette_id/edit', palette.find, renderEdit);
+router.get('/:palette_id', palette.find , renderShow);
+router.post('/',palette.create, redirectShow);
+router.delete('/:palette_id', palette.delete , redirectIndex);
+router.put('/:palette_id', palette.update , redirectShow)
 ```
 
 ## Middleware
@@ -49,17 +55,54 @@ mustacheVariables = {
 }
 ```
 - view: `./palettes/index`
+---
+
+---
+#### renderShow - renders the palettes id
+- mustacheVariables: 
+```js
+mustacheVariables = {
+  palettes: res.locals.palettes
+}
+```
+- view: `./palettes/show`
+---
+
+#### renderEdit - renders to edit the palette
+
+- mustacheVariables: 
+```js
+mustacheVariables = {
+  palettes: res.locals.palettes
+}
+```
+- view: `./palettes/edit`
 
 ---
 
+#### renderNew - add new palette
+
+- mustacheVariables: `no need`
+
+- view: `./palettes/new`
+
+---
 
 USE THE FOLLOWING TEMPLATE FOR EACH REDIRECT:
 
 ---
 #### redirectIndex - redirects to the list of palettes 
+
 - redirect_url: `/palettes`
 ---
 
+#### redirectShow - redirects to the palette id
+
+- redirect_url: `/palettes/${res.locals.palette_id}`
+
+---
 
 ## Exports
-PUT WHAT YOU EXPORT HERE
+```js 
+module.exports = router;
+```
